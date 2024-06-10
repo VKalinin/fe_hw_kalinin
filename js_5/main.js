@@ -105,9 +105,10 @@ console.log(numbersArray([13,21,34,25,19,12,32,64,95,1,22], (num) => num % 2 ===
 
 //Task 2
 function cutAndReversArray(arr, fromIndex, toIndex){
-    return arr.splice(fromIndex, toIndex).reverse();
+    let newArray = arr.slice(fromIndex, toIndex).reverse();
+    return newArray;
 }
-console.log(cutAndReversArray([13,21,34,25,19,12,32,64,95,1,22],3,4));
+console.log(cutAndReversArray([13,21,34,25,19,12,32,64,95,1,22],3,5));
 
 //Task 3
 function processingArray(arr){
