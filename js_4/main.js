@@ -1,129 +1,117 @@
-//Push
+//Splice
 //Task 1
-const emptyArray = [];
-emptyArray.push(1);
-emptyArray.push('JS');
-emptyArray.push(543);
-emptyArray.push('Home');
-emptyArray.push('Work');
-emptyArray.push(32);
-emptyArray.push(0.731);
-
-console.log(emptyArray);
+const middleSpliceArray = [1,2,3,4,'hello', 'world', 'kalinin', 5,6,7];
+middleSpliceArray.splice(3,2);
+console.log(middleSpliceArray);
 
 //Task 2
-function pushElement(Array, element){
-    Array.push(element);
-    return Array;
+function deleteArrayItems (arr, index, count){
+    if (!Array.isArray(arr)) {
+        throw new Error('First argument must be an array');
+    }
+    if (typeof index !== 'number' || typeof count !== 'number') {
+        throw new Error('Index and count must be numbers');
+    }
+    arr.splice(index, count);
+    return arr;
 }
-
-const myArray = [1,2,3]
-
-let updatedArray = pushElement(myArray, 'home-work');
+let updatedArray = deleteArrayItems([1,2,3,4,'hello', 'world', 'kalinin', 5,6,7], 2, 3);
 console.log(updatedArray);
 
-//Pop
+//Reverse
 //Task 1
-const myArray = [1,2,3,4,5,6,7,8,9]
-myArray.pop();
-console.log(myArray);
+let reversArray = [1,2,3,4,'hello', 'world', 'kalinin', 5,6,7];
+let reversedArray = reversArray.reverse();
+console.log(reversedArray);
 
 //Task 2
-function deleteElement(Array){
-    Array.pop();
-    return Array;
-}
+function deleteArrayItems (arr){
+        if (!Array.isArray(arr)) {
+            throw new Error('First argument must be an array');
+        }
+        arr.reverse();
+        return arr;
+    }
+console.log(deleteArrayItems([1,2,3,4,'hello', 'world', 'kalinin', 5,6,7]));
 
-const myArray = [1,2,3,4,5,6,7,8]
-
-let updatedArray = deleteElement(myArray);
-console.log(updatedArray);
-
-//unshift
+//Concat
 //Task 1
-const myArray = [1,2,3,4,5,6,7,8,9]
-myArray.unshift(132);
-console.log(myArray);
+const firstArray = [1,2,3,4];
+const seconArray = ['hello', 'world', 'kalinin', 5,6,7];
+console.log(firstArray.concat(seconArray));
 
 //Task 2
-function unshiftElement(Array, element){
-    Array.unshift(element);
-    return Array;
-}
+function concatArrays (conArr, catArr){
+        if (!Array.isArray(conArr)) {
+            throw new Error('First argument must be an array');
+        }
+        if (!Array.isArray(catArr)) {
+            throw new Error('Second argument must be an array');
+        }
+        return conArr.concat(catArr);
+    }
+console.log(concatArrays([1,2,3,4,'hello'], ['world', 'kalinin', 5,6,7]));
 
-const myArray = [1,2,3]
-
-let updatedArray = unshiftElement(myArray, 'home-work');
-console.log(updatedArray);
-
-//shift
+//Includes
 //Task 1
-const myArray = [1,2,3,4,5,6,7,8,9]
-myArray.shift();
-console.log(myArray);
-
-Task 2
-function deleteFirstElement(Array){
-    Array.shift();
-    return Array;
-}
-
-const myArray = [1,2,3,4,5,6,7,8]
-
-let updatedArray = deleteFirstElement(myArray);
-console.log(updatedArray);
-
-//Fill
-//Task 1
-const myArray = [1,2,3,4,5,6,7,8,9]
-myArray.fill('new');
-console.log(myArray);
+let inclArray = [1,2,3,4,'hello', 'world', 'kalinin', 5,6,7];
+let includesValue = 'hello';
+console.log(inclArray.includes(includesValue));
 
 //Task 2
-function changeElement(Array, element){
-    Array.fill('New', 3, 7);
-    return Array;
+function checkInckudeValue(arr, value){
+    if (!Array.isArray(arr)) {
+        throw new Error('First argument must be an array');
+    }
+    return arr.includes(value);
 }
 
-const myArray = [1,2,3,4,5,6,7,8]
+console.log(checkInckudeValue(['world', 'kalinin', 5,6,7], 8));
 
-let updatedArray = changeElement(myArray);
-console.log(updatedArray);
+//Filter
+//Task 1
+let numbersArray = [1,2,3,4,5,6,7,8,9,10,11,12];
+let evenNumbers = numbersArray.filter((number)=> number%2===0);
+console.log(evenNumbers);
+
+//Task 2
+function filterArray(arr, condition){
+    return arr.filter(condition);
+}
+let numbersArray = [16,21,34,25,19,12,32,64,95,1,22];
+const adult = (num) => num >= 18;
+
+console.log(filterArray(numbersArray, adult));
+
+//Map
+//Task 1
+const numbersArray = [1,2,3,4,5,6,7,8,9,10,11,12];
+console.log(numbersArray.map((num)=> num * num));
+
+//Task 2
+function originArray(arr, converter){
+    return arr.map(converter);
+}
+let numbersArray = [1,2,3,4,5,6,7,8,9,10,11,12];
+const addString = (value) => `Value: ${value}`;
+console.log(originArray(numbersArray, addString));
 
 //Additional tasks
 //Task 1
-function newArray(array, number){
-    if(typeof number === 'number'){
-        return !array.includes(number) ? [...array, number] : [...array]
-    }else{
-        throw new Error('The argument must be a number');
-    }
+function numbersArray(arr, condition, transformer){
+    return arr.filter(condition).map(transformer);
 }
-
-try {
-    console.log(newArray([3,6,12,123,432,4,2,5], 9));
-} catch (error) {
-    console.error(error.message);
-}
+console.log(numbersArray([13,21,34,25,19,12,32,64,95,1,22], (num) => num % 2 === 0, (num) => num * num));
 
 //Task 2
-function sortArray(array){
-    let copyArray = [...array];
-    copyArray.sort(function(a,b){return a-b}).pop();
-    return copyArray;
+function cutAndReversArray(arr, fromIndex, toIndex){
+    let newArray = arr.slice(fromIndex, toIndex).reverse();
+    return newArray;
 }
-console.log(sortArray([3,6,12,123,432,4,2,5]));
+console.log(cutAndReversArray([13,21,34,25,19,12,32,64,95,1,22],3,5));
 
 //Task 3
-function addNumber(array,value){
-    return [value, ...array];
+function processingArray(arr){
+    return arr.filter((num)=> num > 10).splice(0, 3);
 }
-console.log(addNumber([3,6,12,123,432,4,2,5], 100));
-
-//Task 4
-function maxValue(array){
-    return [...array].reduce((accumulator, currentValue) => {
-        return currentValue > accumulator ? currentValue : accumulator;
-    }, [...array][0]);
-}
-console.log(maxValue([3,6,12,123,432,4,2,5]));
+console.log(processingArray([3,2,34,5,19,6,32,64,95,1,22]));
